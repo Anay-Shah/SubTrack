@@ -11,8 +11,9 @@ export async function GET() {
 
     const subscriptions = await getAllSubscriptions(user.id)
     return NextResponse.json(subscriptions)
-  } catch {
-    return NextResponse.json({ error: "Failed to fetch subscriptions" }, { status: 500 })
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    return NextResponse.json({ error: "Failed to fetch subscriptions", detail: message }, { status: 500 })
   }
 }
 
