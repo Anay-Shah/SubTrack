@@ -23,11 +23,10 @@ Two env vars required — both from Supabase Dashboard → Project Settings → 
 
 See `.env.example` for the exact format. If env vars change, fully restart the dev server.
 
-## Critical: Prisma 6 generated client location
-Prisma 6 generates a TypeScript-first client to `src/generated/prisma/`. Import from:
-- App code: `@/generated/prisma/client`
-- Seed script: `../src/generated/prisma/client` (with `import "dotenv/config"` at top)
-Do NOT import from `@prisma/client` directly — it is not initialized.
+## Prisma client location
+Prisma uses `provider = "prisma-client-js"` and generates to the standard `node_modules/@prisma/client` path (required for Vercel compatibility). Import from:
+- App code: `@prisma/client`
+- Seed script: `@prisma/client` (with `import "dotenv/config"` at top)
 Run `npx prisma generate` after any schema changes or clean `npm install`.
 
 ## Critical: .env changes require full server restart
