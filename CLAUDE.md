@@ -15,13 +15,13 @@ All phases complete. The app is fully built and polished.
 - **Auth:** Complete — Supabase Auth with email/password + Google OAuth, protected routes, session persistence, sign-out
 - **Phase 5 (Polish):** Complete — see details below
 
-## Critical: DATABASE_URL must be absolute path
-SQLite does NOT work with relative paths (`file:./prisma/dev.db`) in Next.js 16 + Turbopack.
-`.env` must use an absolute path:
-```
-DATABASE_URL="file:/Users/anayshah/Documents/Claude/subscriptionTracker/prisma/dev.db"
-```
-The `dev.db` file lives at `prisma/dev.db`. If this env var changes, you must fully kill and restart `npm run dev` — hot reload does NOT pick up `.env` changes.
+## Database: PostgreSQL via Supabase
+The app uses Supabase PostgreSQL (switched from SQLite for Vercel deployment).
+Two env vars required — both from Supabase Dashboard → Project Settings → Database:
+- `DATABASE_URL` — Transaction pooler URL (port 6543, `?pgbouncer=true`) — used at runtime
+- `DIRECT_URL` — Direct/Session URL (port 5432) — used by Prisma migrations
+
+See `.env.example` for the exact format. If env vars change, fully restart the dev server.
 
 ## Critical: Prisma 6 generated client location
 Prisma 6 generates a TypeScript-first client to `src/generated/prisma/`. Import from:
