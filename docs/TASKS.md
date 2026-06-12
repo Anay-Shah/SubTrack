@@ -1,0 +1,5 @@
+ - Phase 1: Foundation — Project scaffolding, tooling, DB schema, API layer, state management, app shell
+ - Phase 2: Dashboard — Stat cards, donut chart, upcoming renewals, skeleton states
+ - Phase 3: Subscription CRUD — Subscriptions list page, add/edit/delete flows, search/filter/sort, details page
+ - Phase 4: Calendar — Monthly calendar grid, renewal events, navigation
+ - Phase 5: Polish — Animations, responsive design, dark mode audit, empty states, error/loading boundaries
